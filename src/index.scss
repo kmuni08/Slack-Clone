@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+$vivid-sky-blue: #07c8f9ff;
+$flickr-blue: #0c63e7ff;
+$blue-ryb: #0d41e1ff;
+
+$sheen-green: #a0e426ff;
+$green-pantone: #47b347ff;
+$forest-green-web: #118c11ff;
+
+$gold-web-golden: #ffd900ff;
+$honey-yellow: #ffb300ff;
+$dark-orange: #ff8c00ff;
+
+$rose-madder: #e01e37ff;
+$red-salsa: #f94144ff;
+$crimson-ua: #a11d33ff;
+
+$lemon-yellow-crayola: #fdffb6ff;
+$tea-green: #caffbfff;
+$mauve: #ffc6ffff;
+
+$dark-lava: #3b322cff;
+$gray-web: #817c78ff;
+$davys-grey: #625b56ff;
+
+$cultured: #f8f9faff;
+$gainsboro: #dee2e6ff;
+$cadet-blue-crayola: #adb5bdff;
+
+$smoky-black: #0f0704ff;
+$eerie-black: #1b1918ff;
+$dark-sienna: #230007ff;
+
+$palette-0: #A8D0E6;
+$palette-1: #374785;
+$palette-2: #24395E;
+$palette-3: #F76C6C;
+$palette-4: #F8E9A1;
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html, body { height: 100%; background: $palette-0; color: #FFFFFF; }
+body, * {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  //font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0, .2);
+}
+
+::-webkit-scrollbar-track {
+  //background: #111;
+}
