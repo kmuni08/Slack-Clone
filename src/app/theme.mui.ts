@@ -37,9 +37,9 @@ export default createMuiTheme({
   },
   typography: {
     fontFamily: 'Montserrat',
-    fontWeightLight: 300,
-    fontWeightRegular: 400,
-    fontWeightMedium: 500,
+    fontWeightLight: 400,
+    fontWeightRegular: 500,
+    fontWeightMedium: 600,
     fontWeightBold: 700,
   }
 });

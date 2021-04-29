@@ -44,7 +44,7 @@ $palette-4: #F8E9A1;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-html, body { height: 100%; background: $palette-0; color: #FFFFFF; }
+html, body { height: 100%; color: #000000; }
 body, * {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -54,6 +54,14 @@ body, * {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-image: url("./assests/bg-img.png");
+  background-repeat: repeat-y;
+  background-size: contain;
+  background-color: #4a154b;
+  background-blend-mode: overlay;
 }
 
 
