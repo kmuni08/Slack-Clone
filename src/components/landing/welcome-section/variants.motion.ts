@@ -1,9 +1,17 @@
 import { Variants } from 'framer-motion';
 
-export const landing: Variants = {
-  hidden: {},
+export const parentDiv: Variants = {
+  hidden: {
+    opacity: 0,
+    visibility: 'hidden',
+    transition: {
+      duration: 1,
+      ease: 'easeOut'
+    }
+  },
   visible: {
     opacity: 1,
+    visibility: 'visible',
     transition: {
       duration: 1,
       staggerChildren: .2,
@@ -12,7 +20,7 @@ export const landing: Variants = {
   }
 }
 
-export const landingItem: Variants = {
+export const otherItem: Variants = {
   hidden: {
     opacity: 0,
     y: -50
@@ -27,7 +35,7 @@ export const landingItem: Variants = {
   }
 }
 
-export const landingText: Variants = {
+export const text: Variants = {
   hidden: {
     opacity: 0,
   },
@@ -40,7 +48,7 @@ export const landingText: Variants = {
   }
 }
 
-export const attention: Variants = {
+export const textWithAttention: Variants = {
   hidden: {
     opacity: 0,
   },

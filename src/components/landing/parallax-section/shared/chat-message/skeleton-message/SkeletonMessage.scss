@@ -1,0 +1,11 @@
+.skeleton-message {
+  height: 10px;
+  display: block;
+  border-radius: 20px;
+  background-color: darkgrey;
+  margin-bottom: 5px;
+
+  &.short {
+    width: 70%;
+  }
+}
