@@ -20,7 +20,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    //    "types": [
+    //      "reflect-metadata",
+    //      "@types/gapi",
+    //      "@types/gapi.auth2",
+    //      "@types/facebook-js-sdk"
+    //    ],
   },
   "include": [
     "src"

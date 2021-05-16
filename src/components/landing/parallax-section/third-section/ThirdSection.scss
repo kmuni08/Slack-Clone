@@ -1,0 +1,56 @@
+.third-section.parallax-section {
+  .grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 50px;
+    width: 100%;
+    padding: 0 20px;
+    align-items: center;
+
+    .grid-left {
+      transform: translate(0px, 0px);
+
+      .MuiTypography-root.MuiTypography-h3 {
+        letter-spacing: -3px;
+      }
+
+      .MuiGrid-container {
+        height: inherit !important;
+      }
+    }
+
+    .grid-right {
+      .target-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .project-panel {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+
+        .main-image {
+          width: 90%;
+        }
+
+        .cursor-icon {
+          position: absolute;
+          z-index: 3;
+          left: -100px;
+          bottom: -40px;
+          max-height: 200px;
+          max-width: 250px;
+          animation: slide-in--right-quick .3s infinite alternate-reverse;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slide-in--right-quick{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(10%,-10%,0)}
+}

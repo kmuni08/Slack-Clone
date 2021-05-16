@@ -44,7 +44,12 @@ $palette-4: #F8E9A1;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-html, body { height: 100%; background: $palette-0; color: #FFFFFF; }
+html, body {
+  //height: 100%;
+  color: #000000;
+  scroll-behavior: smooth;
+  //-webkit-transform: translateZ(0);
+}
 body, * {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -56,17 +61,17 @@ body, * {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #aaa;
+  background: antiquewhite;
   border-radius: 20px;
-  border: 1px solid rgba(0,0,0, .2);
+  border: 1px solid #000000;
+
 }
 
 ::-webkit-scrollbar-track {
-  //background: #111;
+  background: #2b092b;
 }

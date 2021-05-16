@@ -1,0 +1,45 @@
+.welcome-section {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  .body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    .MuiTypography-root {
+      letter-spacing: -2px;
+
+      p {
+        display: inline-block;
+        margin: 0 8px;
+        color: #ff8c00ff;
+        font-size: 3rem;
+        line-height: 1.167;
+        font-weight: 700;
+      }
+    }
+
+    .try-btn {
+      padding: 15px 40px;
+      margin-top: 30px;
+      color: #4a154b !important;
+    }
+  }
+
+  .stay-center {
+    position: fixed;
+    top: 40%;
+    width: 950px;
+  }
+}
+
+@media screen and (max-height: 1200px) {
+  .stay-center {
+    position: relative !important;
+    margin-top: 20px;
+  }
+}
