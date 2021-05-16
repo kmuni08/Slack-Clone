@@ -1,0 +1,44 @@
+.fourth-section.parallax-section {
+  .grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 50px;
+    width: 100%;
+    padding: 0 20px;
+    align-items: center;
+
+    .grid-left {
+      transform: translate(0px, 0px);
+
+      .MuiTypography-root.MuiTypography-h3 {
+        letter-spacing: -3px;
+      }
+
+      .MuiGrid-container {
+        height: inherit !important;
+      }
+    }
+
+    .grid-right {
+      .target-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .face-chat-panel {
+        width: 90%;
+        video {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slide-in--right-quick{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(10%,-10%,0)}
+}

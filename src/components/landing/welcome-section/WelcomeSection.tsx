@@ -11,10 +11,10 @@ import { parentDiv, text, textWithAttention, otherItem } from './variants.motion
 import { motion, MotionStyle } from 'framer-motion';
 import './WelcomeSection.scss';
 
-const WelcomeSection: ForwardRefRenderFunction<HTMLDivElement, { shouldShow?: boolean, style?: MotionStyle }> = ({ shouldShow = true, style= undefined }, ref) => {
+const WelcomeSection: ForwardRefRenderFunction<HTMLDivElement, { show?: boolean, style?: MotionStyle }> = ({ show = true, style= undefined }, ref) => {
   return (
     <motion.div ref={ref}
-      variants={parentDiv} initial={'hidden'} animate={ !shouldShow ? 'hidden' : 'visible' }
+      variants={parentDiv} initial={'hidden'} animate={ !show ? 'hidden' : 'visible' }
       style={style}
       className={'welcome-section'}>
       <Container className={'body'}>
@@ -36,6 +36,7 @@ const WelcomeSection: ForwardRefRenderFunction<HTMLDivElement, { shouldShow?: bo
           className={'stay-center'}
           contentHeight={'350px'}
           variants={otherItem}
+          leftTab={true}
           rightTab={
             <Fragment>
               <ChatMessage
@@ -49,6 +50,8 @@ const WelcomeSection: ForwardRefRenderFunction<HTMLDivElement, { shouldShow?: bo
                 icon={<img className={'medium'} alt={'img'} src={'https://a.slack-edge.com/02792/marketing/img/avatars/persona_b/persona-b.png'} />}
                 message={{fontSize: '1.5rem', text: 'It’s a new way to communicate—faster than email and more focused than chat.'}}
                 reactions={[{node: <Like style={{marginBottom: 4}}/>, count: 2}]}/>
+              <br/>
+              <br/>
             </Fragment>
           }
         />

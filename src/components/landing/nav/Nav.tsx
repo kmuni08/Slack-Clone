@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef, ForwardRefRenderFunction } from 'react';
+import React, { CSSProperties, forwardRef, ForwardRefRenderFunction, FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import AppBar, { AppBarTypeMap } from '@material-ui/core/AppBar';
@@ -24,17 +24,17 @@ const generateTheme = (theme: Theme) => {
   return {
     position: appBarPosition[theme],
     color: appBarColor[theme],
-    style: { ...appBarStyle[theme], height: '70px' },
+    style: { ...appBarStyle[theme] },
     tryBtnColor: tryForFreeBtnColor[theme],
     variants: appBar[theme]
   };
 }
 
-const Nav: ForwardRefRenderFunction<HTMLDivElement, { theme?: Theme }> = ({ theme = ThemeDark }, ref) => {
+// const Nav: ForwardRefRenderFunction<HTMLDivElement, { theme?: Theme, height?: number }> = ({ theme = ThemeDark, height = 70 }, ref) => {
+  const Nav: FunctionComponent<{ theme?: Theme, height?: number }> = ({ theme = ThemeDark, height = 70 }) => {
   const { color, position, style, variants, tryBtnColor } = generateTheme(theme);
   return (
-    <AppBar ref={ref}
-            color={color} position={position} style={style}
+    <AppBar color={color} position={position} style={{...style, height}}
             component={motion.header} variants={variants} initial={'hidden'} animate={'visible'} exit={'exit'} >
       <Container maxWidth={'lg'} disableGutters>
         <Toolbar>
@@ -87,4 +87,5 @@ const Nav: ForwardRefRenderFunction<HTMLDivElement, { theme?: Theme }> = ({ them
   )
 };
 
-export default forwardRef(Nav);
+// export default forwardRef(Nav);
+export default Nav;

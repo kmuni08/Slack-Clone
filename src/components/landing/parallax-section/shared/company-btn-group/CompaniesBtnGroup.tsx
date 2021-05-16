@@ -1,38 +1,24 @@
-import React, { Dispatch, FunctionComponent, ReactNode, SetStateAction } from 'react';
+import React, { Dispatch, FunctionComponent, SetStateAction } from 'react';
 
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
-import SmallCompaniesSVG from './SmallCompaniesSVG';
-import MediumCompaniesSVG from './MediumCompaniesSVG';
-import LargeCompaniesSVG from './LargeCompaniesSVG';
 
 import './CompanyBtn.scss';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { CompanyData, CompanyType } from '../../../../../interfaces';
 
-export type CompanyType = 'small' | 'medium' | 'large';
-export const COMPANY_TYPE = {
-  SMALL: 'small',
-  MEDIUM: 'medium',
-  LARGE: 'large'
-}
-
-const companies: { type: CompanyType, text: string, element: ReactNode }[] = [
-  { type: 'small', text: 'Small companies', element: <SmallCompaniesSVG/> },
-  { type: 'medium', text: 'Medium companies', element: <MediumCompaniesSVG/> },
-  { type: 'large', text: 'Large companies', element: <LargeCompaniesSVG/> }
-];
-
-const CompanyBtnGroup: FunctionComponent<{ handler: Dispatch<SetStateAction<CompanyType>>, active: CompanyType }> = ({ handler, active }) => {
+const CompanyBtnGroup: FunctionComponent<{ companies: CompanyData[], handler: Dispatch<SetStateAction<CompanyType>>, active: CompanyType }> =
+  ({ companies, handler, active }) => {
 
   return (
-    <ButtonGroup variant={'outlined'} color={'secondary'}>
+    <ButtonGroup variant={'outlined'} color={'secondary'} className={'company-btn-group'}>
       {
-        companies.map((item, index) => {
+        companies.map((company, index) => {
           return (
             <Button key={`company-btn-${index}`}
-                    onClick={() => handler(item.type)} variant={active === item.type ? 'contained' : 'outlined'}>
+                    onClick={() => handler(company.type)} variant={active === company.type ? 'contained' : 'outlined'}>
               <div className={'body'}>
-                <div className={'icon'}>{item.element}</div>
-                <span>{item.text}</span>
+                <div className={'icon'}>{company.element({})}</div>
+                <span>{company.text}</span>
               </div>
             </Button>
           )

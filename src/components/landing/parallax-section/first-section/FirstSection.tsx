@@ -6,7 +6,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ActiveUsers from '../shared/active-users/ActiveUsers';
 import UsersInConversation from '../shared/users-in-conversation/UsersInConversation';
 import ChatMessage from '../shared/chat-message/ChatMessage';
-import CompanyBtnGroup, { CompanyType } from '../shared/company-btn-group/CompaniesBtnGroup';
+import CompanyBtnGroup from '../shared/company-btn-group/CompaniesBtnGroup';
 import PrototypePanel from '../shared/prototype-panel/PrototypePanel';
 import { ReactComponent as Like } from '../../../../assests/like.svg';
 import { ReactComponent as Celebrate } from '../../../../assests/celebrate.svg';
@@ -16,34 +16,39 @@ import AttachmentIMG from '../../../../assests/pdf.png';
 import { DIContext } from '../../../../contexts/di.context';
 import { Container as DIContainer } from 'inversify/dts/container/container';
 import { TYPES } from '../../../../di-container/di.config';
+
 import { ParallaxService } from '../../../../services/parallax.service';
+import { useParallaxScroll } from '../../../../utils/useParallaxScroll.hook';
+import { useScrollDirection } from '../../../../utils/useScrollDirection.hook';
+import { SectionProps } from '../shared/props';
+import { BackgroundColor, CompanyType, White } from '../../../../interfaces';
 
-import { motion, useSpring, useTransform, useViewportScroll } from 'framer-motion';
-import { leftGrid, rightGrid } from '../variants.motion';
+import { motion } from 'framer-motion';
+import { container as containerVariants, leftGrid, rightGrid } from '../variants.motion';
 import './FirstSection.scss';
+import { useBackgroundSwap } from '../../../../utils/useBackgroundSwap.hook';
 
-const FirstSection: FunctionComponent<{ initialInputRange?: number }> = ({ initialInputRange = 0 }) => {
+/**
+ * ```
+ * final: (100vh * 1.5) or (1000px * 1.5 if 100vh < 1000px)
+ * Scroll Y range = initial --> final
+ * ```
+ */
+const FirstSection: FunctionComponent<SectionProps> =
+  ({ initialScrollY, sectionHeights: [minHeight, sectionHeight], offsetTop, handler }) => {
 
   const container = useContext(DIContext) as DIContainer;
   const parallaxService: ParallaxService = container.get<ParallaxService>(TYPES.ParallaxService);
 
-  const [clientHeight, clientHeightSetter] = useState(0);
-  const [prototypePanelHeight, prototypePanelHeightSetter] = useState(700);
-  const [activeCompanyType, activeCompanyTypeSetter] = useState<CompanyType>('small');
-  // const parallaxScreenRef = useRef<HTMLDivElement>(null);
+  const currentHeight = sectionHeight > minHeight ? sectionHeight : minHeight;
+  const finalScrollY = currentHeight * 1.5;
+  const PROTOTYPE_MIN_HEIGHT = 600;
   const prototypePanelRef = useRef<HTMLDivElement>(null);
-
-  const { scrollY } = useViewportScroll();
-  const scrollYAtMiddle = (initialInputRange + clientHeight) / 2  ;
-  const initialOutputY = (clientHeight + prototypePanelHeight)/2 - initialInputRange;
+  const [prototypeHeight, prototypeHeightSetter] = useState(PROTOTYPE_MIN_HEIGHT);
 
   useEffect(() => {
-    if (prototypePanelRef && prototypePanelRef.current) {
-      prototypePanelHeightSetter(prototypePanelRef.current.clientHeight);
-    }
-    // if (!parallaxScreenRef || !parallaxScreenRef.current) return;
-
-    const setValues = () => clientHeightSetter(window.innerHeight)
+    if (!prototypePanelRef || !prototypePanelRef.current) return ;
+    const setValues = () => prototypeHeightSetter(prototypePanelRef!.current!.clientHeight);
     setValues();
     document.addEventListener("load", setValues);
     window.addEventListener("resize", setValues);
@@ -51,24 +56,26 @@ const FirstSection: FunctionComponent<{ initialInputRange?: number }> = ({ initi
     return () => {
       document.removeEventListener("load", setValues);
       window.removeEventListener("resize", setValues);
-      scrollY.clearListeners();
     };
-  }, [scrollY, scrollYAtMiddle]);
+  }, [prototypePanelRef]);
 
-  const transformY = useSpring(
-    useTransform(
-      scrollY,
-      [initialInputRange, scrollYAtMiddle, scrollYAtMiddle * 2, clientHeight * 2],
-      [initialOutputY, 0, 0, -clientHeight * 2],
-    ),
-    { mass: 10, damping: 100, stiffness: 300, restDelta: 10, restSpeed: 10 }
-  );
+  const { showLeft, showRight, transformY, scrollY } = useParallaxScroll([initialScrollY, finalScrollY], offsetTop, currentHeight, prototypeHeight);
+
+  const [activeCompanyType, activeCompanyTypeSetter] = useState<CompanyType>('small');
+  const direction = useScrollDirection(transformY, showLeft);
+  useBackgroundSwap<BackgroundColor>(handler, White, showLeft);
 
   return (
-    <Container className={'first-section parallax-section'}>
+    <Container
+      className={'first-section parallax-section'} style={{ minHeight }}
+      component={motion.div} variants={containerVariants} initial={'hidden'} animate={showLeft ? 'show' : 'hidden' }
+    >
       <div className={'grid'}>
         <div className={'grid-left'}>
-          <motion.div variants={leftGrid}>
+          <motion.div
+            variants={leftGrid[direction]}
+            initial={'hidden'} animate={showLeft ? 'show' : 'hidden'}
+          >
             <Typography
               fontWeight={'bold'} align={'left'} variant={'h3'}>
               It brings your whole
@@ -81,11 +88,14 @@ const FirstSection: FunctionComponent<{ initialInputRange?: number }> = ({ initi
               fontWeight={'bold'} align={'left'} variant={'h5'} marginTop={5}>
               See what Slack looks like for:
             </Typography>
-            <CompanyBtnGroup handler={activeCompanyTypeSetter} active={activeCompanyType}/>
+            <CompanyBtnGroup companies={parallaxService.getCompanies()} handler={activeCompanyTypeSetter} active={activeCompanyType}/>
           </motion.div>
         </div>
         <div className={'grid-right'}>
-          <motion.div variants={rightGrid}>
+          <motion.div className={'target-wrapper'}
+            variants={rightGrid}
+            animate={showRight ? 'show' : 'hidden'}
+          >
             <PrototypePanel
               ref={prototypePanelRef}
               style={{ y: transformY }}

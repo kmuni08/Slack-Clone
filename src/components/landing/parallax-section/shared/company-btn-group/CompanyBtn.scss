@@ -1,15 +1,18 @@
-.body {
-  .icon {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    height: 140px;
-    width: 100%;
-    margin-bottom: 10px;
-  }
+.company-btn-group {
+  background: #FFFFFF;
+  .body {
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 140px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
 
-  span {
-    text-transform: none !important;
-    line-height: 18px;
+    span {
+      text-transform: none !important;
+      line-height: 18px;
+    }
   }
 }

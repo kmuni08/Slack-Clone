@@ -1,7 +1,7 @@
 import React, { createRef, FunctionComponent, RefObject, useEffect, useRef, useState } from 'react';
 import { usePrevious } from '../../../../../utils/usePrevious.hook';
-import { CompanyType } from '../company-btn-group/CompaniesBtnGroup';
-import { ActiveUser, ActiveUsersProps } from './props';
+import { ActiveUsersProps } from './props';
+import { ActiveUser, CompanyType } from '../../../../../interfaces';
 import './ActiveUsers.scss';
 
 const ActiveUsers: FunctionComponent<ActiveUsersProps> = ({ users, type }) => {
@@ -58,7 +58,7 @@ const ActiveUsers: FunctionComponent<ActiveUsersProps> = ({ users, type }) => {
               { !item.src && !item.secondPoster && item.poster &&
               <img alt={'img'} src={item.poster} />
               }
-              { !item.src && !item.poster && <item.element/> }
+              { !item.src && !item.poster && item.element && <item.element/> }
               { !item.src && item.secondPoster && item.poster &&
               <div className={'double-poster'}>
                 <img alt={'img'} src={item.poster} />

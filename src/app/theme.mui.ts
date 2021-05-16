@@ -1,6 +1,44 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { ButtonPropsColorOverrides, ButtonPropsSizeOverrides } from '@material-ui/core/Button/Button';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { AppBarPropsColorOverrides } from '@material-ui/core/AppBar/AppBar';
 
-export default createMuiTheme({
+declare module '@material-ui/core/Button/Button' {
+  interface ButtonPropsColorOverrides {
+    error: true;
+    info: true;
+    success: true;
+    warning: true;
+  }
+  interface ButtonPropsSizeOverrides {
+    'x-large': true
+  }
+}
+
+declare module '@material-ui/core/AppBar/AppBar' {
+  interface AppBarPropsColorOverrides {
+    error: true;
+    info: true;
+    success: true;
+    warning: true;
+  }
+}
+
+
+export default createTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { size: 'x-large' },
+          style: {
+            padding: '15px 40px'
+          }
+        }
+      ]
+    }
+  },
   palette: {
     primary: {
       light: '#85CAFF',
