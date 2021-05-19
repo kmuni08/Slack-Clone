@@ -31,7 +31,7 @@ function useParallaxScroll(
   const middleOutputY = isFinal && targetHeight > clientHeight ?  -(targetHeight - clientHeight)/2 : 0;
   const finalOutputY = isFinal && targetHeight > clientHeight ? middleOutputY : -(clientHeight + targetHeight)/2;
 
-  console.log(middleOutputY)
+  // console.log(middleOutputY)
 
   const transformY = useSpring(
     useTransform(
