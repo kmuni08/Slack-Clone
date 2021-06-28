@@ -40,7 +40,7 @@ const AuthDigitCode: FunctionComponent<any> = () => {
         <PinInput
           length={6}
           focus
-          style = {{margin: "0px 200px"}}
+          style = {{margin: "20px 200px"}}
           // disabled
           // secret
           // ref={p => (setPin(p))}
