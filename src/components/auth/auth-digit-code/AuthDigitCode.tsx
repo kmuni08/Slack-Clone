@@ -29,17 +29,18 @@ const AuthDigitCode: FunctionComponent<any> = () => {
     <Grid>
       <Paper elevation = {0} style = {paperStyle}>
         <div>
-          <div className='align-elements-sign-up'>Check your email for a code</div>
+          <div className='align-elements-sign-up' style = {{margin: "10px 100px"}}>Check your email for a code</div>
         </div>
-        {/*<Divider style = {{margin: "30px 0px"}}>OR</Divider>*/}
         <div className = "text" style = {{margin: "10px 0px"}}>
-          We've sent a 6-digit code to slackclone1@gmail.com. The code expires shortly so please enter it soon.
+          We've sent a 6-digit code to slackclone1@gmail.com. The code expires shortly so please
         </div>
-        {/*<TextField placeholder = 'name@work-email.com' fullWidth required />*/}
-        {/*<Button type={'submit'} style = {{color: 'white', background: 'purple', margin: "15px 0px"}} fullWidth> Continue</Button>*/}
+        <div className = "text" style = {{margin: "10px 300px"}}>
+          enter it soon.
+        </div>
         <PinInput
           length={6}
           focus
+          style = {{margin: "0px 200px"}}
           // disabled
           // secret
           // ref={p => (setPin(p))}
@@ -48,8 +49,8 @@ const AuthDigitCode: FunctionComponent<any> = () => {
         />
 
         <Box boxShadow={0} bgcolor="background.paper" m={1} p={1} style={{ width: '28rem', height: '5rem', background: 'white' }}>
-          <div className = "private-policy">
-            Can't find your code? Check your spam folder! :)
+          <div className = "private-policy"  style = {{margin: "20px 50px"}}>
+            Can't find your code? Check your spam folder!
           </div>
         </Box>
       </Paper>
