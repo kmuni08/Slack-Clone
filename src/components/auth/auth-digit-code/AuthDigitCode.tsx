@@ -48,11 +48,9 @@ const AuthDigitCode: FunctionComponent<any> = () => {
           // onChange={setPin(onChange)}
         />
 
-        <Box boxShadow={0} bgcolor="background.paper" m={1} p={1} style={{ width: '28rem', height: '5rem', background: 'white' }}>
-          <div className = "private-policy"  style = {{margin: "20px 50px"}}>
-            Can't find your code? Check your spam folder!
-          </div>
-        </Box>
+        <div className = "private-policy"  style = {{margin: "20px 200px"}}>
+          Can't find your code? Check your spam folder!
+        </div>
       </Paper>
 
     </Grid>
