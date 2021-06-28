@@ -49,7 +49,7 @@ const AuthDigitCode: FunctionComponent<any> = () => {
 
         <Box boxShadow={0} bgcolor="background.paper" m={1} p={1} style={{ width: '28rem', height: '5rem', background: 'white' }}>
           <div className = "private-policy">
-            Can't find your code? Check your spam folder!
+            Can't find your code? Check your spam folder! :)
           </div>
         </Box>
       </Paper>
